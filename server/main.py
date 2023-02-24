@@ -34,7 +34,7 @@ async def maxFinder(file: UploadFile = File(...), separator: Optional[str] = ";"
 
     if ".csv" not in file.filename:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="File extension is not .csv")
+            status_code=status.HTTP_411_LENGTH_REQUIRED, detail="File extension is not .csv")
 
     try:
         df = pd.read_csv(file.file, encoding='utf-8', sep=separator)
@@ -42,6 +42,6 @@ async def maxFinder(file: UploadFile = File(...), separator: Optional[str] = ";"
         maxValues = df[df['frequency'] == maxFreq]
     except:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail=f"Bad file format. Considered .csv with {separator} as separator.")
+            status_code=status.HTTP_400_BAD_REQUEST, detail=f"Bad file format. Considered .csv with {separator} as separator and two columns (Radius and Frequency).")
 
     return maxValues
