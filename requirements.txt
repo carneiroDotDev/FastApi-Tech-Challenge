@@ -3,3 +3,5 @@ uvicorn
 python-multipart
 pandas
 requests
+httpx
+pytest

@@ -1,3 +1,4 @@
+# python3 client/main.py
 import requests
 
 filename = "size-distribution1.csv"
